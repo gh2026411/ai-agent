@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: ai-agent
+  datasource:
+    url: jdbc:postgresql://your-database-host:5432/postgres
+    username: your-database-username
+    password: your-database-password
+  ai:
+    alibaba:
+      tool calling:
+        baidu:
+          search:
+            enabled: true
+    dashscope:
+      api-key: your-dashscope-api-key
+      chat:
+        options:
+          model: qwen-max
+    embedding:
+      options:
+        model: text-embedding-v2
+    mcp:
+      client:
+        request-timeout: 60s
+        initialization-timeout: 60s
+        stdio:
+          servers-configuration: classpath:mcp-servers.json
+#        sse:
+#          connections:
+#            server1:
+#              url: http://localhost:8127
+#    vectorstore:
+#      pgvector:
+#        initialize-schema: true  # 修正1：这里必须缩进，且 ture 改为 true
+#        schema-validation: false  # 修正2：拼写错误 ture -> true
+#        index-type: HNSW
+#        distance-type: COSINE_DISTANCE
+#        dimensions: 1536
+#        max-document-batch-size: 10000
+
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+  springdoc:
+    swagger-ui:
+      path: /swagger-ui.html
+      tags-sorter: alpha
+      operations-sorter: alpha
+    api-docs:
+      path: /v3/api-docs
+    group-configs:
+      - group: 'default'
+        paths-to-match: '/**'
+        packages-to-scan: com.gh.aiagent.controller
+  knife4j:
+    enable: true
+    setting:
+      language: zh_cn
+# 修正3：search-api 必须和 spring、server 保持同级（顶格写），不能被包在 server 里面
+search-api:
+  api-key: your-search-api-key
