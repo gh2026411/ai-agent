@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class ImageSearchTool {
 
 
-    private static final String API_KEY = "az33Q0Tvz5YFUtKdYQn8a3ytsIL5O8FUU9QYmfeIsWufhzfokoazNdYA";
+    private static final String API_KEY = "api_key";
 
 
     private static final String API_URL = "https://api.pexels.com/v1/search";
